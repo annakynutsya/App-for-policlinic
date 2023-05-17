@@ -1,0 +1,8 @@
+<h1>List of Doctors</h1>
+
+<% @doctors.each do |doctor| %>
+  <p><%= doctor.first_name %></p>
+  <p><%= doctor.last_name %></p>
+  <p><%= doctor.last_name %></p>
+  <%= image_tag(cloudinary_url(doctor.avatar_public_id, width: 200, crop: :thumb, gravity: :face)) %>
+<% end %>

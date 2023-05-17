@@ -1,0 +1,8 @@
+development:
+  cloud_name: polyclinic
+  api_key: 965573454269849
+  api_secret: VyOWtSj4uzgoW4QtZKpkNXhjHUk
+production:
+  cloud_name: polyclinic
+  api_key: 965573454269849
+  api_secret: VyOWtSj4uzgoW4QtZKpkNXhjHUk
