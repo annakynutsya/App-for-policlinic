@@ -12,3 +12,5 @@ production:
   api_secret: VyOWtSj4uzgoW4QtZKpkNXhjHUk
   enhance_image_tag: true
   static_file_support: false
+  secure: true
+  cdn_subdomain: true
