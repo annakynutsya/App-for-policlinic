@@ -1,0 +1,10 @@
+<div class="flex justify-center items-center h-screen">
+  <div class="top-24 absolute mt-16 text-center py-3 mx-auto pt-5 bg-blue-900 rounded shadow w-96 mt-24 flex flex-col">
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "rounded-lg"}) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <%= f.input :phone, input_html: { class: "text-center h-8 appearance-none rounded-full py-2 px-3 border-0 flex flex-col mx-auto my-2"}, label_html: {class: "text-white text-lg"} %>
+      <%= f.input :password, input_html: { class: "text-center h-8 appearance-none rounded-full py-2 px-3 border-0 flex flex-col mx-auto my-2"}, label_html: {class: "text-white text-lg"} %>
+      <%= f.button :submit, 'Sign in', class: "text-white !bg-gradient-to-r from-cyan-500 to-blue-500 !hover:bg-gradient-to-bl !focus:ring-4 border-none !focus:outline-none !focus:ring-cyan-300 !dark:focus:ring-cyan-800 font-medium !rounded-lg px-6 py-3.5 text-center mr-2 mb-2 mt-2 shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-cyan-800/80" %>
+    <% end %>
+  </div>
+</div>

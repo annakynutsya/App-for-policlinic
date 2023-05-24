@@ -1,0 +1,29 @@
+<div class="flex justify-center items-center text-lg ml-6">
+  <div class="top-24 absolute mt-16">
+    <h1 class="">Hello, <%= @doctor.first_name + ' ' + @doctor.last_name %>, here are your appointments!</h1>
+    <table class="ml-8">
+      <thead>
+        <tr>
+          <th>Patient</th>
+          <th>Date and Time</th>
+          <th>Recommendation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @appointments.each do |appointment| %>
+          <tr class="h-20">
+            <td><%= appointment.patient.first_name + ' ' + appointment.patient.last_name %></td>
+            <td><%= appointment.appointment_datetime.strftime("%B %d, %Y, %I:%M %p") %></td>
+            <td>
+              <% if appointment.recommendation.blank? %>
+                <%= link_to 'Create Recommendation', edit_appointment_path(appointment), class: 'btn btn-primary' %>
+              <% else %>
+                <%= appointment.recommendation %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

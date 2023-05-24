@@ -1,0 +1,6 @@
+<%= simple_form_for(@appointment, html: { class: "top-24 absolute"}) do |form| %>
+
+  <%= form.input :recommendation, label: 'New Recommendation', input_html: { class: 'form-control' } %>
+
+  <%= form.button :submit, 'Create Recommendation' %>
+<% end %>

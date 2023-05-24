@@ -1,8 +1,14 @@
 development:
-  cloud_name: polyclinic
+  cloud_name: dvqlht0zp
   api_key: 965573454269849
   api_secret: VyOWtSj4uzgoW4QtZKpkNXhjHUk
+  enhance_image_tag: true
+  static_file_support: false
+
+
 production:
-  cloud_name: polyclinic
+  cloud_name: dvqlht0zp
   api_key: 965573454269849
   api_secret: VyOWtSj4uzgoW4QtZKpkNXhjHUk
+  enhance_image_tag: true
+  static_file_support: false

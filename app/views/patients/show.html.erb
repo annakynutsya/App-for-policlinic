@@ -1,0 +1,34 @@
+<div class="flex justify-center items-center text-lg ml-6">
+  <div class="top-24 absolute mt-16">
+  <% if @appointments.present?%>
+    <h1 class="">Hello, <%= @patient.first_name + ' ' + @patient.last_name %>, here are your appointments!</h1>
+      <table class="ml-8">
+        <thead>
+          <tr>
+            <th>Doctor</th>
+            <th>Date and Time</th>
+            <th>Recommendation</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% @appointments.each do |appointment| %>
+              <tr class="h-20">
+                <td><%= appointment.doctor.first_name + ' ' + appointment.doctor.last_name %></td>
+                <td><%= appointment.appointment_datetime.strftime("%B %d, %Y, %I:%M %p") %></td>
+                <td>
+                  <% if appointment.recommendation.blank? %>
+                    <%= button_to 'Cancel appointment', appointment_path(appointment), method: :delete, class: 'btn btn-primary' %>
+                  <% else %>
+                    <%= appointment.recommendation %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+        </tbody>
+      </table>
+      <% else %>
+        <p>There is no appoitments yet</p>
+        <%= link_to 'Make an appointment', class: "text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" %>
+      <% end %>
+  </div>
+</div>

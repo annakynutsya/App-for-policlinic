@@ -1,0 +1,13 @@
+<div class="flex justify-center items-center h-screen">
+  <p class="text-black absolute top-0 mt-36 text-2xl font-semibold text-blue-900">Create an account here</p>
+  <div class="top-24 absolute mt-16 text-center py-3 mx-auto pt-5 bg-blue-500 rounded shadow w-96 mt-24 flex flex-col">
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), input_html: { class: "!rounded-lg"}) do |f| %>
+      <%= f.input :first_name, input_html: { class: "text-center h-8 appearance-none !rounded-lg py-2 px-3 border-0 flex flex-col mx-auto my-2"}, label_html: { class: "text-white font-bold text-lg" } %>
+      <%= f.input :last_name, input_html: { class: "text-center h-8 appearance-none !rounded-lg py-2 px-3 border-0 flex flex-col mx-auto my-2"}, label_html: { class: "text-white font-bold text-lg" } %>
+      <%= f.input :phone, input_html: { class: "text-center h-8 appearance-none !rounded-lg py-2 px-3 border-0 flex flex-col mx-auto my-2"}, label_html: { class: "text-white font-bold text-lg" } %>
+      <%= f.input :password, input_html: { class: "text-center h-8 appearance-none !rounded-lg py-2 px-3 border-0 flex flex-col mx-auto my-2"}, label_html: { class: "text-white font-bold text-lg" } %>
+      <%= f.input :password_confirmation, input_html: { class: "text-center h-8 appearance-none !rounded-lg py-2 px-3 border-0 flex flex-col mx-auto my-2"}, label_html: { class: "text-white font-bold text-lg" } %>
+      <%= f.button :submit, 'Sign Up', class: "text-white !bg-gradient-to-r from-cyan-500 to-blue-500 !hover:bg-gradient-to-bl !focus:ring-4 border-none !focus:outline-none !focus:ring-cyan-300 !dark:focus:ring-cyan-800 font-medium !rounded-lg px-6 py-3.5 text-center mr-2 mb-2 mt-2 shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-cyan-800/80 !border-none !text-lg" %>
+    <% end %>
+  </div>
+</div>

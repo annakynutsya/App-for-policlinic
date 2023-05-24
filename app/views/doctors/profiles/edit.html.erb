@@ -1,0 +1,29 @@
+<h1>Edit Profile</h1>
+
+<%= form_with(model: @doctor, url: doctor_profile_path, method: :patch) do |form| %>
+  <% if @doctor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@doctor.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <ul>
+        <% @doctor.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Update Profile' %>
+  </div>
+<% end %>

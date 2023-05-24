@@ -16,8 +16,7 @@ class Ability
       can :create, Appointment
       can :manage, Appointment, patient_id: user.id
     else
-      # Guest user
-      can :read, Doctor
+      can :read, DoctorCategory
     end
   end
 end

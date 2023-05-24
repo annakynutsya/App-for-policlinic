@@ -2,17 +2,30 @@
 <html>
   <head>
     <title>Polyclinic</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
 
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+  <body class="relative h-full">
+    <%= render "layouts/navbar" %>
+
+    <main class="h-full">
+      <% flash.each do |key, value| %>
+        <% if key == "notice" %>
+          <p class="notice top-24 absolute !text-black !bg-green-500 !text-lg ml-8 py-2 px-2.5"><%= value %></p>
+        <% elsif key == "alert" %>
+          <p class="alert top-24 absolute !text-red-500 !text-lg ml-8"><%= value %></p>
+        <% end %>
+      <% end %>
+
+      <%= yield %>
+    </main>
+
+    <%= render "layouts/footer" %>
   </body>
 </html>

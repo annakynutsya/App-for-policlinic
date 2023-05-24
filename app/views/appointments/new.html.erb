@@ -1,0 +1,54 @@
+<div class="w-full flex flex-col justify-center h-screen">
+  <h1 class="text-center">New Appointment</h1>
+
+  <%= simple_form_for(@appointment, url: appointments_path, html: { class: "py-3 mx-auto pt-5 bg-blue-500 rounded shadow w-96 !rounded-lg" }) do |form| %>
+    <% if @appointment.errors.any? || @appointment.patient.errors.any? %>
+      <div id="error_explanation">
+        <ul class="list-none text-white text-lg">
+          <% @appointment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          <% @appointment.patient.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= form.label :doctor, 'Doctor:', class:"text-lg font-bold mb-8 ml-6 text-white" %>
+    <span class="text-lg inline-block mb-8 ml-6 text-white">
+      <%= @appointment.doctor.first_name %> <%= @appointment.doctor.last_name %>
+    </span>
+    <%= form.hidden_field :doctor_id, value: @appointment.doctor_id %>
+
+    <%= form.simple_fields_for :patient_attributes, @appointment.build_patient do |patient_fields| %>
+
+      <% if patient_signed_in? %>
+        <%= form.input :patient_id, as: :hidden, input_html: { value: current_patient.id } %>
+      <% else %>
+        <%= patient_fields.input :first_name, label: 'Your first name', input_html: { class: "text-center h-8 appearance-none !rounded-lg py-2 px-3 border-0 flex flex-col mx-auto my-2"}, label_html: { class: "ml-6 text-white font-bold text-lg" } %>
+        <%= patient_fields.input :last_name, label: 'Your last name', input_html: { class: "text-center h-8 appearance-none !rounded-lg py-2 px-3 border-0 flex flex-col mx-auto my-2"}, label_html: { class: "ml-6 text-white font-bold text-lg" } %>
+        <%= patient_fields.input :phone, label: 'Phone', input_html: { class: "text-center h-8 appearance-none !rounded-lg py-2 px-3 border-0 flex flex-col mx-auto my-2"}, label_html: { class: "ml-6 text-white font-bold text-lg" } %>
+        <%= patient_fields.input :password, label: 'Password', input_html: { class: "text-center h-8 appearance-none !rounded-lg py-2 px-3 border-0 flex flex-col mx-auto my-2"}, label_html: { class: "ml-6 text-white font-bold text-lg" } %>
+        <%= patient_fields.input :password_confirmation, input_html: { class: "text-center h-8 appearance-none !rounded-lg py-2 px-3 border-0 flex flex-col mx-auto my-2"}, label_html: { class: "ml-6 text-white font-bold text-lg" } %>
+      <% end %>
+    <% end %>
+
+    <div class="flex flex-col items-center">
+      <%= form.label :appointment_datetime, "Appointment Date and Time", class: "ml-6 text-white font-bold text-lg" %>
+      <%= form.select :appointment_datetime, input_html: { class: 'border rounded-md p-2 !w-1/2' } do %>
+        <% time_options(@appointment.doctor_id).group_by { |datetime, _| datetime.to_date }.each do |date, datetimes| %>
+          <%= content_tag(:optgroup, label: date.strftime("%B %d, %Y"), class: 'font-bold') do %>
+            <% datetimes.each do |datetime| %>
+              <%= content_tag(:option, datetime.first, value: datetime.last, class: 'py-2') %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="flex justify-center"> <!-- Added wrapper div -->
+      <%= form.button :submit, 'Make an appointment', class: "text-white !bg-gradient-to-r from-cyan-500 to-blue-500 !hover:bg-gradient-to-bl !focus:ring-4 border-none !focus:outline-none !focus:ring-cyan-300 !dark:focus:ring-cyan-800 font-medium !rounded-lg px-6 py-3.5 text-center mr-2 mb-2 mt-2 shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-cyan-800/80 !border-none !text-lg mt-4" %>
+    </div>
+
+  <% end %>
+</div>
