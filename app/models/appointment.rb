@@ -24,7 +24,7 @@ class Appointment < ApplicationRecord
     return unless doctor_id.present?
 
     open_appointments_count = Appointment.where(doctor_id: doctor_id, status: 'open').count
-    if open_appointments_count >= 5
+    if open_appointments_count >= 10
       errors.add(:base, 'Maximum open appointments reached for this doctor')
       throw :abort
     end
