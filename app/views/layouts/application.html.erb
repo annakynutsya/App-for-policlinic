@@ -14,7 +14,7 @@
   <body class="relative h-full">
     <%= render "layouts/navbar" %>
 
-    <main class="h-full">
+    <main class="">
       <% flash.each do |key, value| %>
         <% if key == "notice" %>
           <p class="notice top-24 absolute !text-black !bg-green-500 !text-lg ml-8 py-2 px-2.5"><%= value %></p>
