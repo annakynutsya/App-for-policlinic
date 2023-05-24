@@ -16,11 +16,18 @@ class AppointmentsController < ApplicationController
     open_appointments_count = @doctor.appointments.where(status: 'open').count
 
     if @appointment.save
-      redirect_to patient_path(@appointment.patient), notice: 'Appointment created successfully.'
+      if patient_signed_in?
+        redirect_to patient_path(@appointment.patient), notice: 'Appointment created successfully.'
+      else
+
+        sign_in(@appointment.patient)
+        redirect_to patient_path(@appointment.patient), notice: 'Appointment created successfully. You are now logged in.'
+      end
     else
-     render :new
+      render :new
     end
   end
+
 
   def update
     if @appointment.update(appointment_params)
